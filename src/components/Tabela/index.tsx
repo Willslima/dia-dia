@@ -37,12 +37,22 @@ function createData(
 
 const hoje = new Date()
 
-const rows = [
-    createData('1', 'Sex', hoje, 'Aniversário de casamento', 'dia feliz', 'Braço', true, true,
+const rows: any = [];
+
+rows.push(
+    createData('1',
+        'Sex',
+        hoje,
+        'Aniversário de casamento',
+        'dia feliz',
+        'Braço',
+        true,
+        true,
         'http://google.com',
         true,
-        'O milagre do amanhã'),
-];
+        'O milagre do amanhã')
+    ,)
+
 
 const Container = styled('div')({
     width: '99vw',
@@ -62,10 +72,10 @@ const TableCellTitulo = styled(TableCell)({
 const TableCellLinhas = styled(TableCell)({
     textAlign: 'center'
 })
+
 export default function Tabela() {
     return (
         <Container>
-
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -83,7 +93,7 @@ export default function Tabela() {
                         </TableRowPersonalizada>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
+                        {rows?.map((row: any) => (
                             <TableRow
                                 key={row.id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
