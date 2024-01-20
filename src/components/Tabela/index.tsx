@@ -7,56 +7,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material';
 
-function createData(
-    id: string,
-    ddSemana: string,
-    data: Date,
-    lembrete: string,
-    notas: string,
-    treino: string,
-    leuHoje: boolean,
-    tirouFoto: boolean,
-    foto: string,
-    dieta: boolean,
-    lendo: string,
-) {
-    return {
-        id,
-        ddSemana,
-        data,
-        lembrete,
-        notas,
-        treino,
-        leuHoje,
-        tirouFoto,
-        foto,
-        dieta,
-        lendo
-    };
-}
-
-const hoje = new Date()
-
-const rows: any = [];
-
-rows.push(
-    createData('1',
-        'Sex',
-        hoje,
-        'Aniversário de casamento',
-        'dia feliz',
-        'Braço',
-        true,
-        true,
-        'http://google.com',
-        true,
-        'O milagre do amanhã')
-    ,)
-
-
 const Container = styled('div')({
     width: '99vw',
-    // height: '100vh',
+    marginTop: '2vh'
 })
 
 const TableRowPersonalizada = styled(TableRow)({
@@ -73,7 +26,22 @@ const TableCellLinhas = styled(TableCell)({
     textAlign: 'center'
 })
 
-export default function Tabela() {
+interface Row {
+    id: number;
+    ddSemana: string;
+    data: Date;
+    notas: string;
+    treino: string;
+    leuHoje: boolean;
+    dieta: boolean;
+    foto: string;
+    lendo: string;
+}
+
+const DIAS: string[] = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex']
+const TREINOS: string[] = ['Peito', 'Costas', 'Perna', 'Ombro', 'Braço', 'Fechado', 'Faltei', 'Folga', 'Folga S.', 'Folga D.']
+
+export default function Tabela({ rows }: { rows: Row[] }) {
     return (
         <Container>
             <TableContainer component={Paper}>
@@ -99,16 +67,16 @@ export default function Tabela() {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCellLinhas component="th" scope="row">
-                                    {row.ddSemana}
+                                    {DIAS[row.ddSemana]}
                                 </TableCellLinhas>
                                 <TableCellLinhas align="right">{row.data.toLocaleString()}</TableCellLinhas>
+                                <TableCellLinhas align="right">{row.lembrete}</TableCellLinhas>
                                 <TableCellLinhas align="right">{row.notas}</TableCellLinhas>
-                                <TableCellLinhas align="right">{row.notas}</TableCellLinhas>
-                                <TableCellLinhas align="right">{row.treino}</TableCellLinhas>
-                                <TableCellLinhas align="right">{row.leuHoje ? 'sim' : 'não'}</TableCellLinhas>
-                                <TableCellLinhas align="right">{row.dieta ? 'sim' : 'não'}</TableCellLinhas>
+                                <TableCellLinhas align="right">{TREINOS[row.treino]}</TableCellLinhas>
+                                <TableCellLinhas align="right">{row.leuHoje ? 'Não' : 'Sim'}</TableCellLinhas>
+                                <TableCellLinhas align="right">{row.dieta ? 'Não' : 'Sim'}</TableCellLinhas>
                                 <TableCellLinhas align="right">{row.foto}</TableCellLinhas>
-                                <TableCellLinhas align="right">{row.dieta ? 'sim' : 'não'}</TableCellLinhas>
+                                <TableCellLinhas align="right">{row.dieta ? 'Não' : 'Sim'}</TableCellLinhas>
                                 <TableCellLinhas align="right">{row.lendo}</TableCellLinhas>
                             </TableRow>
                         ))}
