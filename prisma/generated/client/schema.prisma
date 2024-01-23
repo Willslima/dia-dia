@@ -1,0 +1,46 @@
+// schema.prisma
+
+// Definição do modelo para a tabela 'usuarios'
+model Usuario {
+  id_usuario Int    @id @default(autoincrement())
+  nome       String
+  email      String
+  senha      String
+
+  // Relacionamento com a tabela 'atividades_diarias'
+  atividades_diarias AtividadeDiaria[]
+}
+
+// Definição do modelo para a tabela 'atividades_diarias'
+// schema.prisma
+
+// Definição do modelo para a tabela 'atividades_diarias'
+model AtividadeDiaria {
+  id_atividade Int      @id @default(autoincrement())
+  id_usuario   Int
+  ddSemana     String
+  data         DateTime
+  lembrete     String?
+  notas        String?
+  treino       String?
+  leuHoje      Boolean
+  tirouFoto    Boolean
+  foto         String?
+  dieta        Boolean
+  lendo        String?
+
+  // Relacionamento com a tabela 'usuarios'
+  usuario Usuario @relation(fields: [id_usuario], references: [id_usuario])
+}
+
+// Configuração do banco de dados
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+// Definindo a fonte de dados para SQLite
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL") // Você pode ajustar o nome da variável de ambiente conforme necessário
+}

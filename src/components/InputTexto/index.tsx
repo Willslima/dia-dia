@@ -1,11 +1,13 @@
 import { TextField, styled } from "@mui/material";
-import React, { ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 
 
 interface Props {
+    name: string;
     label: string;
     value: string;
     onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+    type?: string;
 }
 
 
@@ -15,8 +17,8 @@ const TextFieldEstilizado = styled(TextField)({
     marginTop: '1vh'
 })
 
-export default function InputTexto({ label, value, onChange }: Props) {
+export default function InputTexto({ name, label, value, onChange, type }: Props) {
     return (
-        <TextFieldEstilizado id="filled-basic" label={label} variant="filled" value={value} onChange={onChange} />
+        <TextFieldEstilizado type={type} name={name} id="filled-basic" label={label} variant="filled" value={value} onChange={onChange} />
     )
 };
