@@ -2,7 +2,6 @@ import { Button, styled } from "@mui/material"
 import InputTexto from "../../components/InputTexto"
 import { useState } from "react"
 import Logo from '../../assets/notes.svg'
-import { getUsers } from "../../service/apiService"
 
 const Container = styled('div')({
     display: 'flex',
@@ -26,22 +25,7 @@ const Imagem = styled('img')({
     height: '150px'
 })
 
-// const A = styled('a')({
-//     color: '#000',
-//     textDecoration: 'none'
-// })
-
-
-export default function Login() {
-    function dados() {
-        getUsers()
-            .then(data => {
-                console.log(usuario.email)
-                console.log(usuario.senha)
-                console.log(data)
-            })
-            .catch(err => console.log(err))
-    }
+export default function Cadastro() {
 
     const [usuario, setUsuario] = useState({
         'email': '',
@@ -63,17 +47,16 @@ export default function Login() {
         atualizarCampo(nomeCampo, valorCampo);
     };
 
-    // const retornaUsuario = () => console.log(usuario)
+    const retornaUsuario = () => console.log(usuario)
 
     return (
         <Container>
             <Imagem src={Logo} />
-
+            <InputTexto name="user" label={"Username"} value={usuario.user} onChange={handleChangeCampo} />
             <InputTexto name="email" label={"Email"} value={usuario.email} onChange={handleChangeCampo} />
             <InputTexto type="password" name="senha" label={"Senha"} value={usuario.senha} onChange={handleChangeCampo} />
-            <p>Faça seu cadastro clicando <a href="/cadastro">aqui</a>!</p>
 
-            <Botao onClick={dados}>Entrar</Botao>
+            <Botao onClick={retornaUsuario}>Cadastrar</Botao>
         </Container>
     )
 };

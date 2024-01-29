@@ -81,11 +81,11 @@ function Home() {
                 }
             </ContainerInputs>
             <ContainerTextArea>
-                <InputTexto key='lembrete' label='Lembrete' value={lembrete} onChange={e => setLembrete(e.target.value)}
+                <InputTexto name='lembrete' key='lembrete' label='Lembrete' value={lembrete} onChange={e => setLembrete(e.target.value)}
                 />
-                <InputTexto key='foto' label='Foto' value={foto} onChange={e => setFoto(e.target.value)}
+                <InputTexto name='foto' key='foto' label='Foto' value={foto} onChange={e => setFoto(e.target.value)}
                 />
-                <InputTexto key='lendo' label='Lendo' value={lendo} onChange={e => setLendo(e.target.value)}
+                <InputTexto name='lendo' key='lendo' label='Lendo' value={lendo} onChange={e => setLendo(e.target.value)}
                 />
                 <InputTextArea value={textArea} onChange={(e) => setTextArea(e.target.value)}
                 />
