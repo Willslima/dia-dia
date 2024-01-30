@@ -23,17 +23,14 @@ const Imagem = styled('img')({
     width: '120px',
     height: '150px'
 });
-// const A = styled('a')({
-//     color: '#000',
-//     textDecoration: 'none'
-// })
 export default function Login() {
-    function dados() {
+    function autentication() {
         getUsers()
             .then(data => {
             console.log(usuario.email);
             console.log(usuario.senha);
             console.log(data);
+            window.location.href = '/notas';
         })
             .catch(err => console.log(err));
     }
@@ -53,7 +50,6 @@ export default function Login() {
         const valorCampo = event.target.value;
         atualizarCampo(nomeCampo, valorCampo);
     };
-    // const retornaUsuario = () => console.log(usuario)
-    return (_jsxs(Container, { children: [_jsx(Imagem, { src: Logo }), _jsx(InputTexto, { name: "email", label: "Email", value: usuario.email, onChange: handleChangeCampo }), _jsx(InputTexto, { type: "password", name: "senha", label: "Senha", value: usuario.senha, onChange: handleChangeCampo }), _jsxs("p", { children: ["Fa\u00E7a seu cadastro clicando ", _jsx("a", { href: "/cadastro", children: "aqui" }), "!"] }), _jsx(Botao, { onClick: dados, children: "Entrar" })] }));
+    return (_jsxs(Container, { children: [_jsx(Imagem, { src: Logo }), _jsx(InputTexto, { name: "email", label: "Email", value: usuario.email, onChange: handleChangeCampo }), _jsx(InputTexto, { type: "password", name: "senha", label: "Senha", value: usuario.senha, onChange: handleChangeCampo }), _jsxs("p", { children: ["Fa\u00E7a seu cadastro clicando ", _jsx("a", { href: "/cadastro", children: "aqui" }), "!"] }), _jsx(Botao, { onClick: autentication, children: "Entrar" })] }));
 }
 ;

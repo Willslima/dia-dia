@@ -26,19 +26,14 @@ const Imagem = styled('img')({
     height: '150px'
 })
 
-// const A = styled('a')({
-//     color: '#000',
-//     textDecoration: 'none'
-// })
-
-
 export default function Login() {
-    function dados() {
+    function autentication() {
         getUsers()
             .then(data => {
                 console.log(usuario.email)
                 console.log(usuario.senha)
                 console.log(data)
+                window.location.href = '/notas'
             })
             .catch(err => console.log(err))
     }
@@ -57,13 +52,11 @@ export default function Login() {
 
     };
 
-    const handleChangeCampo = (event: { target: { name: any; value: any } }) => {
+    const handleChangeCampo = (event: { target: { name: string; value: string | number } }) => {
         const nomeCampo = event.target.name;
         const valorCampo = event.target.value;
         atualizarCampo(nomeCampo, valorCampo);
     };
-
-    // const retornaUsuario = () => console.log(usuario)
 
     return (
         <Container>
@@ -73,7 +66,7 @@ export default function Login() {
             <InputTexto type="password" name="senha" label={"Senha"} value={usuario.senha} onChange={handleChangeCampo} />
             <p>Faça seu cadastro clicando <a href="/cadastro">aqui</a>!</p>
 
-            <Botao onClick={dados}>Entrar</Botao>
+            <Botao onClick={autentication}>Entrar</Botao>
         </Container>
     )
 };
